@@ -1,0 +1,35 @@
+{
+  "name": "babel-plugin-syntax-no-paren",
+  "version": "1.0.0",
+  "description": "Allows parentheses to be omitted in javascript 'if', 'while' and 'for'(each) statements",
+  "main": "src/main.js",
+  "scripts": {
+    "save": "npm publish & push",
+    "test": "cls & node src/test.js"
+  },
+  "keywords": [
+    "babel",
+    "modules",
+    "transpile",
+    "transpiler",
+    "babel-core",
+    "syntax",
+    "plugin",
+    "swift",
+    "no",
+    "parentheses",
+    "compiler"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AFatNiBBa/babel-plugin-syntax-no-paren"
+  },
+  "author": "AFatNiBBa",
+  "license": "ISC",
+  "dependencies": {
+    "register-babel-syntax": "^1.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.0"
+  }
+}
