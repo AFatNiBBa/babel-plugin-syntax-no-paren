@@ -1,13 +1,16 @@
 
 # babel-plugin-syntax-no-paren
-Allows parentheses to be omitted in javascript `if`, `while` and `for`(each) statements
+Allows parentheses to be omitted in javascript `if`, `while` and `for`(each) statements.
+Now allows for brackets to be omitted in `try`, `catch` and `finally`.
+Now allows for `try` statements without a `catch` (it will result in an empty catch).
 > Always update to the latest version to have more features and bug fixes (A looot of bug fixes!) <br>
 > ```bash
 > npm r babel-plugin-syntax-no-paren & npm i babel-plugin-syntax-no-paren
 > ```
 
 ## Warning
-This module uses `register-babel-syntax`, which modifies the source code of `@babel/parser`, so ensure that `register-babel-syntax` loads before you require `@babel/core`
+This module uses `register-babel-syntax`, which modifies the source code of `@babel/parser`, so ensure that `register-babel-syntax` loads before you require `@babel/core`.
+Since this is basically an hack it may stop working, it has been tested with `@babel/parser@7.18.0`.
 
 ## Allowed Syntax
 ```js
@@ -33,13 +36,41 @@ if cond
 // Single-line paren-free 'if' with statement
 if cond; statement();
 ```
-The same is valid for the `while` and `for`(each) statements
+The same is valid for the `while`, `do-while` and `for`(each) statements
 ```js
 while cond
     statement();
 
+do
+    statement();
+while cond
+
 for const e of list
     statement();
+```
+Now allows the following syntaxes for `try`, `catch`, and `finally`
+```js
+try
+    statement();
+catch
+    statement();
+finally
+    statement();
+```
+and allows to put `try` statements without a `catch`
+```js
+try
+    statement();
+
+try {
+    statement();
+}
+
+// Both transpile to
+try {
+    statement();
+}
+catch {}
 ```
 
 ## Not Allowed Syntax
@@ -112,3 +143,31 @@ if cond
     ;
 ```
 The same is valid for the `while` and `for`(each) statements.
+
+## No parentheses in `catch` parameter
+If the parameter where allowed to not have parentheses it would be impossible to distinguish from a body
+```js
+// Not allowed
+try
+    statement();
+catch e
+    statement();
+
+// Allowed
+try
+    statement();
+catch (e)
+    statement();
+```
+because it could have meaned this
+```js
+try {
+    statement();
+}
+catch {
+    e
+}
+    
+statement();
+```
+> I will probably fix this, because the param must actually be a simple identifier, while a body must not

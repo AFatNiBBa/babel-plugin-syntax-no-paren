@@ -12,4 +12,4 @@ const input = `
 const output = transformSync(input, { plugins: [ plugin ] }).code;
 
 console.log(`\x1b[36m${output}\x1b[0m`);
-console.log((0, eval)(`(function(){${ output }})`)());
+console.log((0, eval)(`(function(){\n${ output }\n})`)());
