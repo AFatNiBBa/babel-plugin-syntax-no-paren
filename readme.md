@@ -1,8 +1,9 @@
 
 # babel-plugin-syntax-no-paren
-Allows parentheses to be omitted in javascript `if`, `while` and `for`(each) statements.
-Now allows for brackets to be omitted in `try`, `catch` and `finally`.
-Now allows for `try` statements without a `catch` (it will result in an empty catch).
+Adds the possibility to omit:
+- Parentheses in `if`, `while` and `for`(each) statements.
+- Brackets in `try`, `catch` and `finally`.
+- `catch` in `try` statements (it will result in an empty catch).
 > Always update to the latest version to have more features and bug fixes (A looot of bug fixes!) <br>
 > ```bash
 > npm r babel-plugin-syntax-no-paren & npm i babel-plugin-syntax-no-paren
