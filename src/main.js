@@ -142,7 +142,7 @@ const info = register(NAME, base => {
                 clause.param = null;                                    // catch no param
                 const block = this.startNode();                         // empty body creation 
                 block.body = [];                                        // empty body no statements
-                clause.body = this.finishNode(block, "BlockStatement");  // empty body finalization
+                clause.body = this.finishNode(block, "BlockStatement"); // empty body finalization
                 node.handler = this.finishNode(clause, "CatchClause");  // catch finalization
             }
 
